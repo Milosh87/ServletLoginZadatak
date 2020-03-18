@@ -11,7 +11,6 @@
 <h1> HOME PAGE</h1>
 <jsp:include page="/WEB-INF/pages/template/menu.jsp"></jsp:include>
 
-<p>${loggedError}</p>
 
 </body>
 </html>

@@ -26,6 +26,8 @@
 
 <a href="${logout}">Logout</a>
 
+<p>${loggedError}</p>
+
 
 
 

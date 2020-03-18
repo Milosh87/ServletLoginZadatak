@@ -3,6 +3,7 @@ package action.impl;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.Session;
 
 import abstractaction.AbstractAction;
 import constants.ViewConstants;
@@ -46,18 +47,30 @@ public class LoginVerificationAction extends AbstractAction {
 		}
 		
 	List<User> users = (List<User>) request.getServletContext().getAttribute("users");
+	List<User> loggedUsers = (List<User>) request.getServletContext().getAttribute("loggedUsers");
+	
+	if(loggedUsers.contains(user)) {
+		request.setAttribute("loginError", "User already logged in");
+		signal = true;
+	}
+	
 	if(!signal) {
+		if(request.getSession().getAttribute("user") == null) {
 		for(User u: users) {
 			if(u.getUsername().equals(username) && u.getPassword().equals(password)) {
 				List<User> loggedList = (List<User>) request.getServletContext().getAttribute("loggedUsers");
 				if(!loggedList.contains(u)) {
 				loggedList.add(u);
-				}
+				}		
 				request.getSession().setAttribute("user", u);
 				view =  ViewConstants.HOME_VIEW;
 				signal = true;
 			}
 			
+		}
+		} else {
+			signal = true;
+			request.setAttribute("loginError", "User already logged in");
 		}
 		if(!signal) {
 			request.setAttribute("loginError", "Wrong username / password");
