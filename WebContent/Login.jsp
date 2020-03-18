@@ -9,6 +9,7 @@
 </head>
 <body>
 	<c:set value="${pageContext.request.contextPath}" var="contextPath"></c:set>
+	<jsp:include page="/WEB-INF/pages/template/menu.jsp"></jsp:include>
 
 	<form action="${contextPath}/application/loginvalidation" method="post">
 		<table>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add city</title>
+<title>New User</title>
 </head>
 <body>
 	<c:set value="${pageContext.request.contextPath}" var="context"></c:set>
