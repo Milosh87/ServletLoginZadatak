@@ -50,7 +50,9 @@ public class LoginVerificationAction extends AbstractAction {
 		for(User u: users) {
 			if(u.getUsername().equals(username) && u.getPassword().equals(password)) {
 				List<User> loggedList = (List<User>) request.getServletContext().getAttribute("loggedUsers");
+				if(!loggedList.contains(u)) {
 				loggedList.add(u);
+				}
 				request.getSession().setAttribute("user", u);
 				view =  ViewConstants.HOME_VIEW;
 				signal = true;
